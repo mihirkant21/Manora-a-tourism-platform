@@ -1,6 +1,13 @@
-require("dotenv").config();
-const express = require("express");
-const db = require("./config/db"); // ✅ centralized DB connection
+import dotenv from "dotenv";
+import express from "express";
+import { initDB } from "./Config/db.js";
+import authRoutes from "./routes/authRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
+import lostFoundRoutes from "./routes/lostFoundRoutes.js";
+import photoRoutes from "./routes/photoRoutes.js";
+import placeRoutes from "./routes/placeRoutes.js";
+
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -9,16 +16,19 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 
 // Routes
-app.get("/", (req, res) => {
-  res.send("Manora Tourism Platform Backend is Running 🚀");
-});
+app.use("/auth", authRoutes);
+app.use("/users", userRoutes);
+app.use("/lost-found", lostFoundRoutes);
+app.use("/photos", photoRoutes);
+app.use("/places", placeRoutes);
 
-app.use("/auth", require("./routes/authRoutes"));
-app.use("/lostfound", require("./routes/lostFoundRoutes"));
-app.use("/photocontest", require("./routes/photoContestRoutes"));
-app.use("/places", require("./routes/placeRoutes"));
-
-// Start server
-app.listen(PORT, () => {
-  console.log(`✅ Server running at http://localhost:${PORT}`);
-});
+// DB init
+initDB()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`✅ Server running at http://localhost:${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error("❌ DB init failed:", err);
+  });
