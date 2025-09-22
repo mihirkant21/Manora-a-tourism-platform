@@ -1,26 +1,22 @@
 require("dotenv").config();
 const express = require("express");
-const sqlite3 = require("sqlite3").verbose();
+const db = require("./config/db"); // ✅ centralized DB connection
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// DB setup
-const db = new sqlite3.Database(process.env.DB_PATH, (err) => {
-  if (err) {
-    console.error("❌ Error connecting to database:", err.message);
-  } else {
-    console.log("✅ Connected to SQLite database");
-  }
-});
-
 // Middleware
 app.use(express.json());
 
-// Test route
+// Routes
 app.get("/", (req, res) => {
   res.send("Manora Tourism Platform Backend is Running 🚀");
 });
+
+app.use("/auth", require("./routes/authRoutes"));
+app.use("/lostfound", require("./routes/lostFoundRoutes"));
+app.use("/photocontest", require("./routes/photoContestRoutes"));
+app.use("/places", require("./routes/placeRoutes"));
 
 // Start server
 app.listen(PORT, () => {
