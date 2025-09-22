@@ -1,0 +1,168 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navbar{
+    height: 80px;
+    background-color: rgb(255, 253, 242);
+}
+
+.navbar-brand{
+    font-size: 40px;
+    font-family: "Poppins";
+    font-weight: 700;
+}
+
+.nav-link{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+#search-bar{
+    font-size: 18px;
+}
+
+#btn-1{
+    font-size: 18px;
+    font-weight: 500;
+}
+
+#btn-2,#btn-3{
+    font-size: 18px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.intro_section {
+    width: 100%;
+    height: 800px;
+    overflow: hidden;
+    position: relative;
+    background-color: black;
+}
+
+.slider {
+    display: flex;
+    width: 600%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    animation: slide 36s infinite;
+    /* 6 images × 6s each (4s pause + 2s slide) */
+}
+
+.slider img {
+    width: 16.6666%;
+    /* 100% / 6 images */
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.main_text_intro_section{
+    position: relative;
+    z-index: 10;
+    color: white;
+    text-align: center;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%)
+}
+
+.main_text_intro_section h1{
+    font-size: 100px;
+    font-weight: 700;
+}
+
+.highlight{
+    font-size: 90px;
+    font-weight: 700;
+    color: yellow;
+}
+
+#quote_under_highlight{
+    font-size: 30px;
+}
+
+.feature-box-in{
+    background-color: white;
+    color: black;
+    opacity: 0.5;
+}
+
+/* Keyframes for slide with pause */
+@keyframes slide {
+    0% {
+        transform: translateX(0%);
+    }
+
+    11.11% {
+        transform: translateX(0%);
+    }
+
+    /* pause on first image */
+
+    16.66% {
+        transform: translateX(-16.6666%);
+    }
+
+    /* slide to 2nd */
+    27.77% {
+        transform: translateX(-16.6666%);
+    }
+
+    /* pause on 2nd */
+
+    33.33% {
+        transform: translateX(-33.3333%);
+    }
+
+    /* slide to 3rd */
+    44.44% {
+        transform: translateX(-33.3333%);
+    }
+
+    /* pause on 3rd */
+
+    50% {
+        transform: translateX(-50%);
+    }
+
+    /* slide to 4th */
+    61.11% {
+        transform: translateX(-50%);
+    }
+
+    /* pause on 4th */
+
+    66.66% {
+        transform: translateX(-66.6666%);
+    }
+
+    /* slide to 5th */
+    77.77% {
+        transform: translateX(-66.6666%);
+    }
+
+    /* pause on 5th */
+
+    83.33% {
+        transform: translateX(-83.3333%);
+    }
+
+    /* slide to 6th */
+    94.44% {
+        transform: translateX(-83.3333%);
+    }
+
+    /* pause on 6th */
+
+    100% {
+        transform: translateX(0%);
+    }
+
+    /* loop back */
+}
