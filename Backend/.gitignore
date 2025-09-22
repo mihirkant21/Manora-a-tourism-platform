@@ -1,1 +1,12 @@
+# Node modules
 node_modules
+
+# Environment variables
+.env
+
+# SQLite Database
+database.sqlite
+
+# Logs
+npm-debug.log
+yarn-error.log
