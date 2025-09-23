@@ -256,6 +256,20 @@ main{
     width: 25px;
 }
 
+#previewContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+#previewImg {
+    max-width: 300px;
+    display: none;
+    border: 2px solid #ddd;
+    padding: 5px;
+    border-radius: 8px;
+}
+
 .category-buttons {
     display: flex;
     justify-content: center;
