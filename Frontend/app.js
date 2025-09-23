@@ -219,24 +219,26 @@ document.addEventListener("DOMContentLoaded", () => {
     // -----------------------------
     // Photo Contest Upload Preview
     // -----------------------------
-    const uploadBtn = document.getElementById("uploadBtn");
-    const fileInput = document.getElementById("fileInput");
-    const previewImg = document.getElementById("previewImg");
+  const uploadBtn = document.getElementById("uploadBtn");
+  const fileInput = document.getElementById("fileInput");
+  const previewImg = document.getElementById("previewImg");
 
-    if (uploadBtn && fileInput && previewImg) {
-        uploadBtn.addEventListener("click", () => fileInput.click());
+  // Open file dialog on button click
+  uploadBtn.addEventListener("click", () => fileInput.click());
 
-        fileInput.addEventListener("change", (event) => {
-            const file = event.target.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                previewImg.src = e.target.result;
-                previewImg.style.display = "block";
-            };
-            reader.readAsDataURL(file);
-        });
+  // Handle file selection
+  fileInput.addEventListener("change", (event) => {
+    const file = event.target.files[0]; // Only first file
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        previewImg.src = e.target.result;
+        previewImg.style.display = "block"; // Show preview
+      };
+      reader.readAsDataURL(file);
     }
+  });
+
 
     // -----------------------------
     // Picture Gallery Slideshow

@@ -216,6 +216,23 @@ main {
 }
 
 
+#previewContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#previewImg {
+    max-width: 300px;
+    border: 2px solid #ddd;
+    padding: 5px;
+    border-radius: 8px;
+    display: none;
+    /* stays hidden until upload */
+    margin: auto;
+    /* ensures it's centered */
+}
 
 .contest-container {
     text-align: center;
