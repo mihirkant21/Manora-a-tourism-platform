@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
         display: flex; 
         align-items: center; 
         justify-content: center; 
-        padding: 25px; 
+        padding: 25px; /* Slightly increased padding for larger space */
         opacity: 0.7; 
         transform: scale(0.95); 
         transition: all 0.5s ease; 
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
         align-items: center; 
         background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 100%); 
         border-radius: 15px; 
-        padding: 25px; 
+        padding: 25px; /* Increased padding to match larger box */
         box-sizing: border-box; 
       }
       .picture_gallery img { 
@@ -73,13 +73,13 @@ document.addEventListener("DOMContentLoaded", () => {
         display: flex; 
         flex-direction: column; 
         justify-content: center; 
-        padding: 0 25px; 
+        padding: 0 25px; /* Increased padding for better text spacing in larger box */
         color: #fff; 
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); 
         background: rgba(0, 0, 0, 0.3); 
         border-radius: 15px; 
         backdrop-filter: blur(10px); 
-        overflow: hidden; 
+        overflow: hidden; /* Prevent overflow from child elements */
       }
       .gallery_info h3 { 
         font-size: 2.5em; 
@@ -246,16 +246,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (slidesTrack && dotsContainer) {
         const galleryData = [
-            { img: "images/Phek_town.jpg", experience: "Stepping inside felt like wandering into a dreamlike maze, pieced together from broken bangles, glass shards, tiles, and even old pipes. What should’ve been junk suddenly looked delicate and almost magical — proof that even scraps can be art.As I walked further, the echo of waterfalls filled the air.One moment I was squeezing through tight, sculpture- lined passages, the next I was standing in wide courtyards with ponds and greenery all around.The shift in spaces made the whole place feel alive, constantly surprising you.", location: "Rock Garden, Ranchi" },
+            { img: "images/Phek_town.jpg", experience: "Stepping inside felt like wandering into a dreamlike maze, pieced together from broken bangles, glass shards, tiles, and even old pipes. What should’ve been junk suddenly looked delicate and almost magical — proof that even scraps can be art.As I walked further, the echo of waterfalls filled the air.One moment I was squeezing through tight, sculpture- lined passages, the next I was standing in wide courtyards with ponds and greenery all around.The shift in spaces made the whole place feel alive, constantly surprising you.", location: "Rock Garden, Ranchi" },
             { img: "images/Panchghat_Waterfall.jpg", experience: "Entering the forest path to Panchghagh is a descent into a living gallery of sound and motion. You don't just see the waterfall; you hear it long before you arrive, a distant hum growing into a powerful, multi-layered roar. It feels less like a single destination and more like five separate stories unfolding at once.", location: "Panchghagh Waterfall, Khunti" },
-            { img: "images/Patratu_dam_Ramgarh.png", experience: "Standing in front of Patratu Dam feels overwhelming — the sheer wall of concrete rising above you, with thin streams of water sliding down its face, is both powerful and oddly calming. At the bottom, the water collects quietly, surrounded by rocks and little patches of green that soften the heavy industrial look of the structure. It’s the kind of place where you really notice the mix of human engineering and nature, working together to create something striking.", location: "Patratu dam, Ramgarh" },
-            { img: "images/Khandoli Park_Giridih.png", experience: "When I walked through Khandoli Park, the first thing I noticed was the sound of kids laughing on the swings, their voices mixing with the chugging of a toy train in the background. A few rabbits and ducks were hanging around, as if they were part of the show, looking way too serious for such a playful setting. Families had spread out under the trees, sharing snacks, clicking selfies, and just enjoying the day. The whole place felt lighthearted and warm, like a simple picnic scene brought to life.", location: "Khandoli Park, Giridih" }
+            { img: "images/Patratu_dam_Ramgarh.png", experience: "Standing in front of Patratu Dam feels overwhelming — the sheer wall of concrete rising above you, with thin streams of water sliding down its face, is both powerful and oddly calming. At the bottom, the water collects quietly, surrounded by rocks and little patches of green that soften the heavy industrial look of the structure. It’s the kind of place where you really notice the mix of human engineering and nature, working together to create something striking.", location: "Patratu dam, Ramgarh" },
+            { img: "images/Khandoli Park_Giridih.png", experience: "When I walked through Khandoli Park, the first thing I noticed was the sound of kids laughing on the swings, their voices mixing with the chugging of a toy train in the background. A few rabbits and ducks were hanging around, as if they were part of the show, looking way too serious for such a playful setting. Families had spread out under the trees, sharing snacks, clicking selfies, and just enjoying the day. The whole place felt lighthearted and warm, like a simple picnic scene brought to life.", location: "Khandoli Park, Giridih" }
         ];
 
         let currentIndex = 0;
-        let autoSlideInterval;
 
-        // Render slides + dots
         galleryData.forEach((item, i) => {
             const slide = document.createElement("div");
             slide.classList.add("slide");
@@ -275,10 +273,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const dot = document.createElement("span");
             dot.classList.add("dot");
             if (i === 0) dot.classList.add("active");
-            dot.addEventListener("click", () => {
-                goToSlide(i);
-                restartAutoSlide();
-            });
+            dot.addEventListener("click", () => goToSlide(i));
             dotsContainer.appendChild(dot);
         });
 
@@ -301,26 +296,47 @@ document.addEventListener("DOMContentLoaded", () => {
             updateSlides();
         }
 
-        function startAutoSlide() {
-            autoSlideInterval = setInterval(nextSlide, 4000); // smoother interval
-        }
-
-        function stopAutoSlide() {
-            clearInterval(autoSlideInterval);
-        }
-
-        function restartAutoSlide() {
-            stopAutoSlide();
-            startAutoSlide();
-        }
-
-        // Pause on hover (better UX)
-        slidesTrack.addEventListener("mouseenter", stopAutoSlide);
-        slidesTrack.addEventListener("mouseleave", startAutoSlide);
-
-        // Start
-        startAutoSlide();
+        setInterval(nextSlide, 3000);
     }
 
     console.log("✅ All features initialized (navbar scroll, search, upload preview, gallery slider).");
+});
+
+// Login modal controls
+const loginBtn = document.getElementById("btn-2"); // Login button in navbar
+const loginModal = document.getElementById("loginModal");
+const closeLogin = document.getElementById("closeLogin");
+
+loginBtn.addEventListener("click", () => {
+  loginModal.style.display = "flex";
+});
+
+closeLogin.addEventListener("click", () => {
+  loginModal.style.display = "none";
+});
+
+window.addEventListener("click", (e) => {
+  if (e.target === loginModal) {
+    loginModal.style.display = "none";
+  }
+});
+
+
+// Signup modal controls
+const signupBtn = document.getElementById("btn-3"); // Sign Up button in navbar
+const signupModal = document.getElementById("signupModal");
+const closeSignup = document.getElementById("closeSignup");
+
+signupBtn.addEventListener("click", () => {
+  signupModal.style.display = "flex";
+});
+
+closeSignup.addEventListener("click", () => {
+  signupModal.style.display = "none";
+});
+
+window.addEventListener("click", (e) => {
+  if (e.target === signupModal) {
+    signupModal.style.display = "none";
+  }
 });
