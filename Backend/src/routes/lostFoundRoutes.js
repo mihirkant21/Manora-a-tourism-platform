@@ -3,8 +3,8 @@ import { addItem, getItems, getItemById } from "../controllers/Lostfoundcontroll
 
 const router = express.Router();
 
-router.post("/", addItem);
-router.get("/", getItems);
-router.get("/:id", getItemById);
+router.post("/", addItem);     // ➡️ POST /lost-found
+router.get("/", getItems);     // ➡️ GET /lost-found
+router.get("/:id", getItemById); // ➡️ GET /lost-found/:id
 
 export default router;
