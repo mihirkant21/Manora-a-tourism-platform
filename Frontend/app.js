@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const style = document.createElement('style');
     style.textContent = `
     .js-scroll-highlight {
-      box-shadow: 0 0 40px 10px rgba(255,215,0,0.9);
+    //   box-shadow: 0 0 40px 10px rgba(255,215,0,0.9);
       transition: box-shadow 0.4s ease-in-out;
     }
     .js-clickable { cursor: pointer; }
