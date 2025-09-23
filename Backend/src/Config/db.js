@@ -1,30 +1,18 @@
-import sqlite3 from "sqlite3";
-import { open } from "sqlite";
+import { Sequelize } from "sequelize";
 
-let db;
+// Create Sequelize instance
+const sequelize = new Sequelize({
+  dialect: "sqlite",
+  storage: process.env.DB_PATH || "./database.sqlite",
+  logging: false, // disable logs, set true if you want SQL logs
+});
 
-export async function initDB() {
-  db = await open({
-    filename: process.env.DB_PATH || "./database.sqlite",
-    driver: sqlite3.Database,
-  });
-
-  await db.exec(`
-    CREATE TABLE IF NOT EXISTS users (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      username TEXT UNIQUE,
-      password TEXT,
-      email TEXT
-    );
-  `);
-
-  console.log("✅ Database initialized");
-  return db;
+// Test connection
+try {
+  await sequelize.authenticate();
+  console.log("✅ Database connected (Sequelize + SQLite)");
+} catch (error) {
+  console.error("❌ Database connection failed:", error);
 }
 
-// ✅ export db as default so models can import it
-export default {
-  run: (...args) => db.run(...args),
-  all: (...args) => db.all(...args),
-  get: (...args) => db.get(...args),
-};
+export default sequelize;
