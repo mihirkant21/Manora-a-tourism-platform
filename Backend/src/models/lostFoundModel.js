@@ -1,6 +1,8 @@
+// src/models/userModel.js
 import { DataTypes } from "sequelize";
-import sequelize from "../Config/db.js";
-import User from "./User.js";
+import sequelize from "../Config/db.js";  // ✅ Correct relative path
+
+import User from "./userModel.js";
 
 const LostFound = sequelize.define("LostFound", {
   id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },

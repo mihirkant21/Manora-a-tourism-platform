@@ -1,9 +1,8 @@
 import express from "express";
+import { getPlaces } from "../controllers/placecontroller.js";
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.json({ message: "✅ Place route working" });
-});
+router.get("/", getPlaces);
 
-export default router; // ✅ default export
+export default router;

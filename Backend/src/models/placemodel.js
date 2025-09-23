@@ -1,5 +1,7 @@
+// src/models/userModel.js
 import { DataTypes } from "sequelize";
-import sequelize from "../Config/db.js";
+import sequelize from "../Config/db.js";  // ✅ Correct relative path
+
 
 const Place = sequelize.define("Place", {
   id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
