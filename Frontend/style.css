@@ -403,7 +403,7 @@ main{
     /* no small rounded corners if you want edge-to-edge */
     box-shadow: none;
     /* optional: remove shadow for clean full-width */
-    background: #000;
+    background: transparent;
     /* background while images load */
 }
 
