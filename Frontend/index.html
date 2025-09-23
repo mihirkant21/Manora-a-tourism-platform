@@ -209,7 +209,59 @@
                     </div>
                 </div>
             </div>
-
+        </section>
+        <section class="contest_section ">
+            <div class="container-fluid contest-container">
+                <h1 class="display-4 fw-bold mb-1">Photo and Review Contest</h1>
+                <p class="lead mb-4">Share your top travel moments and win your next free passes and VIP treatment! <br> Write a review about your journey and favorite experiences with nature, friends, or your travel group.</p>
+                <form action="" id="form_control_contest" class="m-auto">
+                    <div class="upload-btn-container row">
+                        <button type="button" id="uploadBtn" class="btn upload-btn ">
+                            <img src="images/upload.png" alt="upload">
+                            <span>Upload your picture</span>
+                        </button>
+                        <!-- Hidden File Input -->
+                        <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                        
+                        <!-- Preview -->
+                        <div id="previewContainer" style="margin-top: 15px;">
+                            <img id="previewImg" src="" alt="Preview"
+                                style="max-width: 300px; display: none; border: 2px solid #ddd; padding: 5px; border-radius: 8px;">
+                        </div>
+                
+                        <div class="experience-container mt-3">
+                            <label for="experience_input" class="form-label">Share Your Experience</label>
+                            <textarea id="experience_input" class="form-control" placeholder="Write your experience" maxlength="1000"
+                                rows="5"></textarea>
+                        </div>
+                
+                        <div class="category-radio-container d-flex justify-content-center mt-3">
+                            <div class="category-radio d-flex gap-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="photoCategory" id="groupOption">
+                                    <label class="form-check-label" for="groupOption">
+                                        Group
+                                    </label>
+                                </div>
+                
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="photoCategory" id="soloOption">
+                                    <label class="form-check-label" for="soloOption">
+                                        Solo / Candid
+                                    </label>
+                                </div>
+                
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="photoCategory" id="natureOption">
+                                    <label class="form-check-label" for="natureOption">
+                                        Nature
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary mt-3 " id="btn_contest_submit">Submit</button>
+                </form>                
+            </div>
         </section>
     </main>
     <footer class="p-4">
