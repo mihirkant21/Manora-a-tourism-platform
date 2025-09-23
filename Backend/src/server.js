@@ -6,7 +6,6 @@ import userRoutes from "./routes/userRoutes.js";
 import lostFoundRoutes from "./routes/lostFoundRoutes.js";
 import photoRoutes from "./routes/photoRoutes.js";
 import placeRoutes from "./routes/placeRoutes.js";
-
 dotenv.config();
 
 const app = express();
@@ -21,7 +20,8 @@ app.use("/users", userRoutes);
 app.use("/lost-found", lostFoundRoutes);
 app.use("/photos", photoRoutes);
 app.use("/places", placeRoutes);
-
+app.use(express.json()); // parses application/json
+app.use(express.urlencoded({ extended: true })); // parses form data
 // DB init
 initDB()
   .then(() => {
