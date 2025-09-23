@@ -342,3 +342,38 @@ window.addEventListener("click", (e) => {
     signupModal.style.display = "none";
   }
 });
+
+// Signup form and button
+const signupForm = document.getElementById("signupForm");
+const signupSubmitBtn = document.querySelector(".signup-btn");
+
+signupSubmitBtn.addEventListener("click", (e) => {
+  e.preventDefault(); // stop page reload
+
+  // ✅ Simple validation (check required fields)
+  if (!signupForm.checkValidity()) {
+    signupForm.reportValidity(); // show browser’s built-in error messages
+    return;
+  }
+
+  // Collect data
+  const formData = new FormData(signupForm);
+  const data = Object.fromEntries(formData.entries());
+
+  console.log("Signup data:", data);
+
+  // ✅ Here you can send data to backend (example with fetch)
+  /*
+  fetch("/signup", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: { "Content-Type": "application/json" }
+  })
+  .then(res => res.json())
+  .then(result => console.log("Signup success:", result))
+  .catch(err => console.error("Signup error:", err));
+  */
+
+  alert("✅ Sign up submitted!");
+  signupForm.reset(); // clear form after submission
+});
