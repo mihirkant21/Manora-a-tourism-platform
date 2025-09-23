@@ -1,5 +1,11 @@
-import db from "../config/db.js";
+import { DataTypes } from "sequelize";
+import sequelize from "../Config/db.js";
 
-export const getAllPlaces = (callback) => {
-  db.all("SELECT * FROM places", [], callback);
-};
+const Place = sequelize.define("Place", {
+  id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+  name: { type: DataTypes.STRING, allowNull: false },
+  description: { type: DataTypes.TEXT },
+  location: { type: DataTypes.STRING },
+});
+
+export default Place;
