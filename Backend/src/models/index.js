@@ -1,5 +1,5 @@
 // src/models/index.js
-import sequelize from "../config/db.js";
+import sequelize from "../Config/db.js";
 
 // Import models
 import User from "./userModel.js";
@@ -27,7 +27,7 @@ export const initModels = async () => {
     await sequelize.authenticate();
     console.log("✅ Database connected");
 
-    await sequelize.sync({ alter: true }); // auto create/alter tables
+    await sequelize.sync({ force: true }); // auto create/alter tables
     console.log("✅ All models synced successfully");
     console.log("📦 Models:", Object.keys(sequelize.models));
   } catch (err) {
