@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+body{
+    background-color: black;
+}
+
 .navbar{
     height: 80px;
     background-color: rgb(255, 253, 242);
@@ -37,6 +41,7 @@
 
 main{
     background-color: rgba(0, 0, 0, 1);
+    margin-top: 50px;
 }
 
 .intro_section {
@@ -132,7 +137,6 @@ main{
 
 .lost_found_section{
     position: relative;
-    margin: 10px 0;
     min-height: 600px;
     z-index: 10;
     background-color: black;
@@ -159,40 +163,86 @@ main{
     position: relative;
     z-index: 10;
     color: aliceblue;
-    margin-top: 30px;
-    margin-bottom: 50px;
+    margin-top: 4px;
+    margin-bottom: 30px;
 }
 
 #lost_found_heading h2{
-    font-size: 70px;
+    font-size: 100px;
     font-weight: 600;
     text-shadow: 5px 5px 40px white;
 }
 
 #lost_found_heading p{
-    font-size: 20px;
+    font-size: 35px;
     font-weight: 600;
+    margin-top: 30px;
     text-shadow: 5px 5px 15px black;
 }
 
-#lost_found_left{
-    position: relative;
-    width: 600px;
-    height: 600px;
-    background-color: white;
-    opacity: 0.8;
-    z-index: 10;
-}
 
 #lost_found_left h2{
     font-size: 30px;
     font-weight: 650;
 }
 
+#lost_found_left,
+#lost_found_right{
+    position: relative;
+    min-width: 600px;
+    /* instead of fixed width */
+    height: 620px;
+    background-color: white;
+    opacity: 0.9;
+    z-index: 10;
+    box-shadow: 5px 5px 15px black;
+}
+
+#lost_found_right{
+    box-shadow: 5px 5px 15px black;
+}
+
+#lost_found_right h2 {
+    font-size: 30px;
+    font-weight: 650;
+}
+
+
 .input_form{
     font-size: 18px;
     font-weight: 500;
 }
+
+footer{
+    margin-top: 40px;
+    background-color: #212121;
+    height: 270px;
+}
+
+#f_descp h2{
+    color: #878787;
+}
+
+#f_descp{
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+#f_about_contact a{
+    text-decoration: none;
+    color: white;
+}
+
+#f_about_contact h4{
+    color: #878787;
+}
+
+#f_about_contact p{
+    color: white;
+}
+
+
 
 /* Keyframes for slide with pause */
 @keyframes slide {

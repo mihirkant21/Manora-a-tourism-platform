@@ -14,7 +14,7 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg ">
+        <nav class="navbar navbar-expand-lg fixed-top ">
             <div class="container-fluid">
                 <a class="navbar-brand ms-3"  href="#">Manora</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -102,7 +102,7 @@
                 </div>
             </div>
         </section>
-        <section class="lost_found_section">
+        <section id="lostFoundSection" class="lost_found_section ">
             <div class="lost_found_bg" >
                 <img id="lost_found_bg_img" src="images/lost_found_bg_4.png"  alt="">
             </div>
@@ -111,16 +111,16 @@
                     <h2 class="mt-5">Lost & Found</h2>
                     <p>Hello Travelers!<br>Whether you’ve lost something or found it, report it here and help belongings find their way home.</p>
                 </div>
-                <div class="input_form row m-5">
-                    <div class="col-6 rounded-4 py-3" id="lost_found_left">
+                <div class="input_form row m-1 d-flex justify-content-between align-items-center">
+                    <div class="col-auto rounded-4 py-3 px-3" id="lost_found_left">
                         <h2 class="text-center">Report an item</h2>
                         <form class="pb-5">
-                            <div class="row text-center mx-3 px-1 rounded-5 d-flex justify-content-between gap-3">
-                                <div class="col px-5 form-check bg-danger text-white py-2 rounded-3">
+                            <div class="row text-center mx-3 px-1 mb-2 rounded-5 d-flex justify-content-between gap-3">
+                                <div class="col px-5 form-check text-white py-2 rounded-3" style="background-color: #ff3131;">
                                     <input type="radio" class="form-check-input" name="reportType" id="lostOption">
                                     <label class="form-check-label fw-bold" for="lostOption">I lost something</label>
                                 </div>
-                                <div class="col px-5 form-check bg-success text-white py-2 rounded-3">
+                                <div class="col px-5 form-check text-white py-2 rounded-3" style="background-color: #00bf63;">
                                     <input type="radio" class="form-check-input" name="reportType" id="foundOption">
                                     <label class="form-check-label fw-bold" for="foundOption">I found something</label>
                                 </div>
@@ -155,9 +155,56 @@
                         </form>
 
                     </div>
-                    <div class="col-6">
-                        <div id="lost_found_right">
-
+                    <div class="col-lg-6 col-md-12 rounded-4 py-1 shadow-sm" id="lost_found_right">
+                        <div class="p-3 d-flex flex-column h-100">
+                            <h2 class="mb-4 text-center">Lost Items</h2>
+                    
+                            <!-- Search Bar -->
+                            <div id="lost_found_right_input_group" class="input-group mb-4">
+                                <span class="input-group-text bg-white">
+                                    <i class="bi bi-search"></i>
+                                </span>
+                                <input type="text" id="searchInput" class="form-control" placeholder="Search items...">
+                            </div>
+                    
+                            <!-- Scrollable list of cards -->
+                            <div class="overflow-auto flex-grow-1">
+                                <div class="card mb-3 shadow-sm border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title d-flex justify-content-between align-items-center">
+                                            Red Skybag Backpack
+                                            <span class="badge bg-success">Active</span>
+                                        </h5>
+                                        <p class="mb-1"><i class="bi bi-geo-alt-fill me-2"></i> Near zoo, Ranchi</p>
+                                        <p class="mb-1"><i class="bi bi-calendar-event me-2"></i> 19/09/2025</p>
+                                        <p class="mb-0 text-muted">Description: ............</p>
+                                    </div>
+                                </div>
+                    
+                                <div class="card mb-3 shadow-sm border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title d-flex justify-content-between align-items-center">
+                                            Blue Wallet
+                                            <span class="badge bg-success">Active</span>
+                                        </h5>
+                                        <p class="mb-1"><i class="bi bi-geo-alt-fill me-2"></i> Railway Station,Ranchi</p>
+                                        <p class="mb-1"><i class="bi bi-calendar-event me-2"></i> 15/09/2025</p>
+                                        <p class="mb-0 text-muted">Description: ............</p>
+                                    </div>
+                                </div>
+                    
+                                <div class="card mb-3 shadow-sm border-0">
+                                    <div class="card-body">
+                                        <h5 class="card-title d-flex justify-content-between align-items-center">
+                                            Black iPhone 13
+                                            <span class="badge bg-success">Active</span>
+                                        </h5>
+                                        <p class="mb-1"><i class="bi bi-geo-alt-fill me-2"></i> Bus Stop,Ranchi</p>
+                                        <p class="mb-1"><i class="bi bi-calendar-event me-2"></i> 10/09/2025</p>
+                                        <p class="mb-0 text-muted">Description: ............</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -165,10 +212,41 @@
 
         </section>
     </main>
-    <footer>
-
+    <footer class="p-4">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-6" id="f_descp">
+                    <h2>Manora</h2>
+                    <p>Our platform unites travel storytelling, photography, and community engagement in one destination. Users share experiences, participate in weekly contests with tourism rewards, and benefit from an integrated Lost & Found system that strengthens connections and fosters meaningful impact.</p>
+                </div>
+                <div class="col-6 px-4" id="f_about_contact">
+                    <div class="row">
+                        <div class="col-4">
+                            <h4>About</h4>
+                            <div><a href="">Contact Us</a></div>
+                            <div><a href="">About Us</a></div>
+                            <div><a href="">Tourist Stories</a></div>
+                        </div>
+                        <div class="col-4">
+                            <h4>Customer Policy</h4>
+                            <div><a href="">Terms Of Use</a></div>
+                            <div><a href="">Privacy</a></div>
+                            <div><a href="">Security</a></div>
+                        </div>
+                        <div class="col-4">
+                            <h4>Registered Office</h4>
+                            <p>Manora, Neerukonda, Mangalagiri Mandal
+                            Guntur District, Mangalagiri, Andhra Pradesh 522240</p>
+                            <p><b>Phone:</b>+91-863-16500 / 480-4988-6999</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </footer>
 
+    <script src="app.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
