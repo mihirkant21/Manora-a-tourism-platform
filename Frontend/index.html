@@ -26,6 +26,7 @@
                         <a class="nav-link active mx-2" aria-current="page" href="#">Home</a>
                         <a class="nav-link active mx-2" href="#">Lost & Found</a>
                         <a class="nav-link active mx-2" href="#">Contest</a>
+                        <a class="nav-link active mx-2" href="#">Missing Person</a>
                         <li class="nav-item dropdown mx-2">
                             <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
@@ -280,6 +281,248 @@
                 <div class="slides-track" id="slidesTrack"></div>
                 <div class="dots" id="dots"></div>
             </div>
+        </section>
+        <section class="missing_section" id="missing">
+            <div class="missing_cont container" id="missing_count">
+                <h1>Missing Person Cases</h1>
+            
+                <div class="main-grid ">
+                    <!-- Left Column: Form Section -->
+                    <div class="form-section">
+                        <div class="notify-section">
+                            Notify a Missing Person
+                        </div>
+            
+                        <!-- Radio buttons -->
+                        <div class="action-buttons d-flex justify-content-center">
+                            <input type="radio" id="report" name="reportType" class="action-radio" checked>
+                            <label for="report" class="action-btn report-btn">Report a Missing Person</label>
+            
+                            <input type="radio" id="found" name="reportType" class="action-radio">
+                            <label for="found" class="action-btn found-btn">Found a Missing Person</label>
+                        </div>
+            
+                        <form id="missingPersonForm">
+                            <div class="form-grid">
+                                <!-- Left Form Column -->
+                                <div>
+                                    <div class="form-group">
+                                        <label for="name">Name</label>
+                                        <input type="text" id="name" name="name" required>
+                                    </div>
+            
+                                    <div class="form-group">
+                                        <label for="gender">Gender</label>
+                                        <select id="gender" name="gender" required>
+                                            <option value="">Select Gender</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                            <option value="other">Other</option>
+                                            <option value="prefer-not-to-say">Prefer not to say</option>
+                                        </select>
+                                    </div>
+            
+                                    <div class="form-group">
+                                        <label for="bodyMarks">Body Marks</label>
+                                        <input type="text" id="bodyMarks" name="bodyMarks" placeholder="e.g., Tattoos, scars, etc.">
+                                    </div>
+            
+                                    <div class="form-group">
+                                        <label for="description" class="description-label">Description</label>
+                                        <textarea id="description" name="description"
+                                            placeholder="Provide a detailed description..."></textarea>
+                                    </div>
+                                </div>
+            
+                                <!-- Right Form Column -->
+                                <div>
+                                    <div class="form-group">
+                                        <label for="age">Age</label>
+                                        <input type="number" id="age" name="age" min="0" max="150" placeholder="e.g., 25">
+                                    </div>
+            
+                                    <div class="form-group">
+                                        <label for="height">Height</label>
+                                        <input type="text" id="height" name="height" placeholder="e.g., 5'10&quot; or 178 cm">
+                                    </div>
+            
+                                    <div class="form-group">
+                                        <label for="clothing">Clothing Last Seen Wearing</label>
+                                        <input type="text" id="clothing" name="clothing" placeholder="e.g., Blue jacket, jeans">
+                                    </div>
+                                </div>
+                            </div>
+            
+                            <div class="upload-section">
+                                <input type="file" id="imageUpload" name="image" accept="image/*" style="display: none;">
+                                <label for="imageUpload" class="upload-btn">
+                                    <span class="upload-icon"></span>
+                                    Upload Picture
+                                </label>
+                                <img id="preview" class="preview" alt="Image Preview">
+                            </div>
+            
+                            <button type="submit" class="submit-btn">Submit Report</button>
+                        </form>
+                    </div>
+            
+                    <!-- Right Column: Cards Section -->
+                    <div class="cards-section">
+                        <!-- Filter Section -->
+                        <div class="filter-section">
+                            <div class="filter-group">
+                                <label for="genderFilter">Gender</label>
+                                <select id="genderFilter">
+                                    <option value="">All</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label for="ageFilter">Age</label>
+                                <select id="ageFilter">
+                                    <option value="">All</option>
+                                    <option value="child">Child (0-12)</option>
+                                    <option value="teen">Teen (13-19)</option>
+                                    <option value="adult">Adult (20+)</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label for="locationFilter">Location</label>
+                                <input type="text" id="locationFilter" placeholder="e.g., Delhi">
+                            </div>
+                        </div>
+            
+                        <!-- Cards Grid -->
+                        <div class="cards-grid" id="cardsGrid">
+                            <!-- Demo Cases -->
+                            <div class="card" data-gender="male" data-age="adult" data-location="delhi">
+                                <div class="card-image"></div>
+                                <div class="card-content">
+                                    <div class="name-age">
+                                        <span>Ankur Saini</span>
+                                        <span class="age">20 Years</span>
+                                    </div>
+                                    <div class="details-grid">
+                                        <div class="detail-item">
+                                            <div class="detail-label">Gender</div>
+                                            <div class="detail-value">Male</div>
+                                        </div>
+                                        <div class="detail-item">
+                                            <div class="detail-label">Height</div>
+                                            <div class="detail-value">5'10"</div>
+                                        </div>
+                                        <div class="detail-item">
+                                            <div class="detail-label">Body Marks</div>
+                                            <div class="detail-value">Tattoo on left arm</div>
+                                        </div>
+                                        <div class="detail-item">
+                                            <div class="detail-label">Clothing</div>
+                                            <div class="detail-value">Blue shirt, jeans</div>
+                                        </div>
+                                    </div>
+                                    <div class="description">Last seen in Delhi on Oct 15, 2023. Scar on forehead. Left home for
+                                        walk and did not return.</div>
+                                </div>
+                            </div>
+            
+                            <div class="card" data-gender="female" data-age="teen" data-location="mumbai">
+                                <div class="card-image"></div>
+                                <div class="card-content">
+                                    <div class="name-age">
+                                        <span>Priya Sharma</span>
+                                        <span class="age">17 Years</span>
+                                    </div>
+                                    <div class="details-grid">
+                                        <div class="detail-item">
+                                            <div class="detail-label">Gender</div>
+                                            <div class="detail-value">Female</div>
+                                        </div>
+                                        <div class="detail-item">
+                                            <div class="detail-label">Height</div>
+                                            <div class="detail-value">5'4"</div>
+                                        </div>
+                                        <div class="detail-item">
+                                            <div class="detail-label">Body Marks</div>
+                                            <div class="detail-value">Pierced ears</div>
+                                        </div>
+                                        <div class="detail-item">
+                                            <div class="detail-label">Clothing</div>
+                                            <div class="detail-value">White top, skirt</div>
+                                        </div>
+                                    </div>
+                                    <div class="description">Missing from Mumbai since Sept 20, 2023. Small birthmark on cheek.
+                                        Last seen near local market after school.</div>
+                                </div>
+                            </div>
+            
+                            <div class="card" data-gender="other" data-age="adult" data-location="bangalore">
+                                <div class="card-image"></div>
+                                <div class="card-content">
+                                    <div class="name-age">
+                                        <span>Rahul Kumar</span>
+                                        <span class="age">35 Years</span>
+                                    </div>
+                                    <div class="details-grid">
+                                        <div class="detail-item">
+                                            <div class="detail-label">Gender</div>
+                                            <div class="detail-value">Other</div>
+                                        </div>
+                                        <div class="detail-item">
+                                            <div class="detail-label">Height</div>
+                                            <div class="detail-value">6'0"</div>
+                                        </div>
+                                        <div class="detail-item">
+                                            <div class="detail-label">Body Marks</div>
+                                            <div class="detail-value">Scar on hand</div>
+                                        </div>
+                                        <div class="detail-item">
+                                            <div class="detail-label">Clothing</div>
+                                            <div class="detail-value">Black jacket, pants</div>
+                                        </div>
+                                    </div>
+                                    <div class="description">Reported missing in Bangalore on Nov 5, 2023. Has multiple tattoos
+                                        on back. Last seen leaving workplace.</div>
+                                </div>
+                            </div>
+            
+                            <!-- Extra Demo Case -->
+                            <div class="card" data-gender="female" data-age="adult" data-location="kolkata">
+                                <div class="card-image"></div>
+                                <div class="card-content">
+                                    <div class="name-age">
+                                        <span>Sunita Das</span>
+                                        <span class="age">28 Years</span>
+                                    </div>
+                                    <div class="details-grid">
+                                        <div class="detail-item">
+                                            <div class="detail-label">Gender</div>
+                                            <div class="detail-value">Female</div>
+                                        </div>
+                                        <div class="detail-item">
+                                            <div class="detail-label">Height</div>
+                                            <div class="detail-value">5'3"</div>
+                                        </div>
+                                        <div class="detail-item">
+                                            <div class="detail-label">Body Marks</div>
+                                            <div class="detail-value">Mole on right cheek</div>
+                                        </div>
+                                        <div class="detail-item">
+                                            <div class="detail-label">Clothing</div>
+                                            <div class="detail-value">Green saree</div>
+                                        </div>
+                                    </div>
+                                    <div class="description">Last seen in Kolkata railway station on Jan 5, 2024. Wearing
+                                        traditional attire.</div>
+                                </div>
+                            </div>
+            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </section>
     </main>
     <footer class="p-4">

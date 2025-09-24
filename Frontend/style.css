@@ -762,6 +762,294 @@ h2 {
     box-shadow: 0 5px 15px rgba(10, 102, 194, 0.3);
 }
 
+#missing_count {
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color: #e9ecef;
+    border-radius: 20px;
+    box-shadow: 0px 0px 25px #e9ecef;
+    padding-bottom: 3px;
+}
+
+#missing_count h1 {
+    font-size: 70px;
+    font-weight: 700;
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+#missing_count .main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* Left: Form */
+#missing_count .form-section {
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e9ecef;
+}
+
+#missing_count .notify-section {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #5a6c7d;
+}
+
+#missing_count .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+#missing_count .form-group {
+    margin-bottom: 15px;
+}
+
+#missing_count label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #2c3e50;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+#missing_count input[type="text"],
+#missing_count input[type="number"],
+#missing_count select,
+#missing_count textarea {
+    width: 100%;
+    padding: 8px 10px;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff;
+}
+
+#missing_count input:focus,
+#missing_count select:focus,
+#missing_count textarea:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+#missing_count textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+#missing_count .description-label {
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+#missing_count .upload-section {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#missing_count .upload-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #ff69b4, #4169e1);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 12px rgba(255, 105, 180, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+#missing_count .upload-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 105, 180, 0.3);
+}
+
+#missing_count .upload-icon::before {
+    content: "📎";
+    font-size: 1rem;
+}
+
+#missing_count .preview {
+    margin-top: 10px;
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 8px;
+    display: none;
+    border: 1px solid #dee2e6;
+}
+
+#missing_count .submit-btn {
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#missing_count .submit-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Right: Cards */
+#missing_count .cards-section {
+    background-color: white;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e9ecef;
+    height: 80vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#missing_count .filter-section {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+#missing_count .filter-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#missing_count .filter-group label {
+    font-weight: 500;
+    margin-bottom: 3px;
+    color: #5a6c7d;
+    font-size: 0.8rem;
+}
+
+#missing_count .filter-group select,
+#missing_count .filter-group input {
+    padding: 6px 8px;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+    background-color: white;
+    font-size: 0.85rem;
+}
+
+#missing_count .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 10px;
+    flex-grow: 1;
+}
+
+#missing_count .card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e9ecef;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#missing_count .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+#missing_count .card-image {
+    width: 100%;
+    height: 150px;
+    background-color: #e9ecef;
+    object-fit: cover;
+}
+
+#missing_count .card-content {
+    padding: 10px;
+}
+
+#missing_count .card-content h3 {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: #2c3e50;
+}
+
+#missing_count .card-content p {
+    font-size: 0.85rem;
+    color: #5a6c7d;
+    margin-bottom: 5px;
+}
+
+#missing_count .preview {
+    margin-top: 10px;
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 8px;
+    display: none;
+    border: 1px solid #dee2e6;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#missing_count .action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    /* spacing between buttons */
+    margin: 15px 0;
+}
+
+#missing_count .action-buttons input[type="radio"] {
+    display: none;
+    /* hide the default circle */
+}
+
+#missing_count .action-buttons label {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #f1f1f1;
+    transition: 0.3s;
+    font-weight: 500;
+}
+
+#missing_count .action-buttons input[type="radio"]:checked+label {
+    background: #007bff;
+    color: #fff;
+}
+
 /* Keyframes for slide with pause */
 @keyframes slide {
     0% {

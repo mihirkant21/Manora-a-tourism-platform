@@ -1,16 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // -----------------------------
-    // Navbar + Smooth Scroll
-    // -----------------------------
-    const navbar = document.querySelector('.navbar');
-    let navbarHeight = navbar ? navbar.offsetHeight : 0;
-    window.addEventListener('resize', () => {
-        navbarHeight = navbar ? navbar.offsetHeight : 0;
-    });
+  // -----------------------------
+  // Navbar + Smooth Scroll
+  // -----------------------------
+  const navbar = document.querySelector('.navbar');
+  let navbarHeight = navbar ? navbar.offsetHeight : 0;
+  window.addEventListener('resize', () => {
+    navbarHeight = navbar ? navbar.offsetHeight : 0;
+  });
 
-    // Small helper CSS - Updated to prevent location cropping in slideshow
-    const style = document.createElement('style');
-    style.textContent = `
+  // Small helper CSS - Updated to prevent location cropping in slideshow
+  const style = document.createElement('style');
+  style.textContent = `
       .js-scroll-highlight { transition: box-shadow 0.4s ease-in-out; }
       .js-clickable { cursor: pointer; }
       /* Picture Gallery Slide - Enhanced Styling with Increased Box Size and Anti-Cropping Fixes */
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
         display: flex; 
         align-items: center; 
         justify-content: center; 
-        padding: 25px; /* Slightly increased padding for larger space */
+        padding: 25px; 
         opacity: 0.7; 
         transform: scale(0.95); 
         transition: all 0.5s ease; 
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
         align-items: center; 
         background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 100%); 
         border-radius: 15px; 
-        padding: 25px; /* Increased padding to match larger box */
+        padding: 25px; 
         box-sizing: border-box; 
       }
       .picture_gallery img { 
@@ -73,13 +73,13 @@ document.addEventListener("DOMContentLoaded", () => {
         display: flex; 
         flex-direction: column; 
         justify-content: center; 
-        padding: 0 25px; /* Increased padding for better text spacing in larger box */
+        padding: 0 25px; 
         color: #fff; 
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); 
         background: rgba(0, 0, 0, 0.3); 
         border-radius: 15px; 
         backdrop-filter: blur(10px); 
-        overflow: hidden; /* Prevent overflow from child elements */
+        overflow: hidden; 
       }
       .gallery_info h3 { 
         font-size: 2.5em; 
@@ -145,80 +145,82 @@ document.addEventListener("DOMContentLoaded", () => {
           .gallery_info p { font-size: 1em; }
       }
     `;
-    document.head.appendChild(style);
+  document.head.appendChild(style);
 
-    function smoothScrollToElem(elem) {
-        if (!elem) return;
-        const rect = elem.getBoundingClientRect();
-        const top = window.pageYOffset + rect.top - navbarHeight - 10;
-        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+  function smoothScrollToElem(elem) {
+    if (!elem) return;
+    const rect = elem.getBoundingClientRect();
+    const top = window.pageYOffset + rect.top - navbarHeight - 10;
+    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
 
-        elem.classList.add('js-scroll-highlight');
-        clearTimeout(elem._jsHighlightTimeout);
-        elem._jsHighlightTimeout = setTimeout(() => elem.classList.remove('js-scroll-highlight'), 1600);
-    }
+    elem.classList.add('js-scroll-highlight');
+    clearTimeout(elem._jsHighlightTimeout);
+    elem._jsHighlightTimeout = setTimeout(() => elem.classList.remove('js-scroll-highlight'), 1600);
+  }
 
-    const mapping = {
-        'lost & found': '#lostFoundSection',
-        'photo contest': '.contest_section',
-        'contest': '.contest_section',
-        'gallery': '.Picture_Gallery',
-        'places': '#Picture_Gallery' // ✅ Added "Places" feature mapping
-    };
+  // ✅ Added "missing person" here
+  const mapping = {
+    'lost & found': '#lostFoundSection',
+    'photo contest': '.contest_section',
+    'contest': '.contest_section',
+    'gallery': '.Picture_Gallery',
+    'places': '#Picture_Gallery',
+    'missing person': '#missing'
+  };
 
-    // Feature boxes click
-    document.querySelectorAll('.feature-box-in').forEach(box => {
-        const h3 = box.querySelector('h3');
-        if (!h3) return;
-        const name = h3.textContent.replace(/\s+/g, ' ').trim().toLowerCase();
-        const selector = mapping[name];
-        if (!selector) return;
-        const target = document.querySelector(selector);
-        if (!target) return;
+  // Feature boxes click
+  document.querySelectorAll('.feature-box-in').forEach(box => {
+    const h3 = box.querySelector('h3');
+    if (!h3) return;
+    const name = h3.textContent.replace(/\s+/g, ' ').trim().toLowerCase();
+    const selector = mapping[name];
+    if (!selector) return;
+    const target = document.querySelector(selector);
+    if (!target) return;
 
-        box.classList.add('js-clickable');
-        if (!box.hasAttribute('tabindex')) box.tabIndex = 0;
+    box.classList.add('js-clickable');
+    if (!box.hasAttribute('tabindex')) box.tabIndex = 0;
 
-        box.addEventListener('click', () => smoothScrollToElem(target));
-        box.addEventListener('keydown', e => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                smoothScrollToElem(target);
-            }
-        });
+    box.addEventListener('click', () => smoothScrollToElem(target));
+    box.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        smoothScrollToElem(target);
+      }
     });
+  });
 
-    // Navbar links click
-    document.querySelectorAll('.navbar-nav a').forEach(link => {
-        const text = link.textContent.replace(/\s+/g, ' ').trim().toLowerCase();
-        const selector = mapping[text];
-        if (!selector) return;
-        const target = document.querySelector(selector);
-        if (!target) return;
+  // Navbar links click
+  document.querySelectorAll('.navbar-nav a').forEach(link => {
+    const text = link.textContent.replace(/\s+/g, ' ').trim().toLowerCase();
+    const selector = mapping[text];
+    if (!selector) return;
+    const target = document.querySelector(selector);
+    if (!target) return;
 
-        link.classList.add('js-clickable');
-        link.addEventListener('click', e => {
-            e.preventDefault();
-            smoothScrollToElem(target);
-        });
+    link.classList.add('js-clickable');
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      smoothScrollToElem(target);
     });
+  });
 
-    // -----------------------------
-    // Lost & Found Search
-    // -----------------------------
-    const searchInput = document.getElementById('searchInput');
-    if (searchInput) {
-        searchInput.addEventListener('input', () => {
-            const q = searchInput.value.toLowerCase();
-            document.querySelectorAll('#lost_found_right .card').forEach(card => {
-                card.style.display = card.innerText.toLowerCase().includes(q) ? '' : 'none';
-            });
-        });
-    }
+  // -----------------------------
+  // Lost & Found Search
+  // -----------------------------
+  const searchInput = document.getElementById('searchInput');
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.toLowerCase();
+      document.querySelectorAll('#lost_found_right .card').forEach(card => {
+        card.style.display = card.innerText.toLowerCase().includes(q) ? '' : 'none';
+      });
+    });
+  }
 
-    // -----------------------------
-    // Photo Contest Upload Preview
-    // -----------------------------
+  // -----------------------------
+  // Photo Contest Upload Preview
+  // -----------------------------
   const uploadBtn = document.getElementById("uploadBtn");
   const fileInput = document.getElementById("fileInput");
   const previewImg = document.getElementById("previewImg");
@@ -228,40 +230,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Handle file selection
   fileInput.addEventListener("change", (event) => {
-    const file = event.target.files[0]; // Only first file
+    const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
         previewImg.src = e.target.result;
-        previewImg.style.display = "block"; // Show preview
+        previewImg.style.display = "block";
       };
       reader.readAsDataURL(file);
     }
   });
 
+  // -----------------------------
+  // Picture Gallery Slideshow
+  // -----------------------------
+  const slidesTrack = document.getElementById("slidesTrack");
+  const dotsContainer = document.getElementById("dots");
 
-    // -----------------------------
-    // Picture Gallery Slideshow
-    // -----------------------------
-    const slidesTrack = document.getElementById("slidesTrack");
-    const dotsContainer = document.getElementById("dots");
+  if (slidesTrack && dotsContainer) {
+    const galleryData = [
+      { img: "images/Phek_town.jpg", experience: "Stepping inside felt like wandering into a dreamlike maze, ...", location: "Rock Garden, Ranchi" },
+      { img: "images/Panchghat_Waterfall.jpg", experience: "Entering the forest path to Panchghagh is a descent ...", location: "Panchghagh Waterfall, Khunti" },
+      { img: "images/Patratu_dam_Ramgarh.png", experience: "Standing in front of Patratu Dam feels overwhelming ...", location: "Patratu dam, Ramgarh" },
+      { img: "images/Khandoli Park_Giridih.png", experience: "When I walked through Khandoli Park, the first thing ...", location: "Khandoli Park, Giridih" }
+    ];
 
-    if (slidesTrack && dotsContainer) {
-        const galleryData = [
-            { img: "images/Phek_town.jpg", experience: "Stepping inside felt like wandering into a dreamlike maze, pieced together from broken bangles, glass shards, tiles, and even old pipes. What should’ve been junk suddenly looked delicate and almost magical — proof that even scraps can be art.As I walked further, the echo of waterfalls filled the air.One moment I was squeezing through tight, sculpture- lined passages, the next I was standing in wide courtyards with ponds and greenery all around.The shift in spaces made the whole place feel alive, constantly surprising you.", location: "Rock Garden, Ranchi" },
-            { img: "images/Panchghat_Waterfall.jpg", experience: "Entering the forest path to Panchghagh is a descent into a living gallery of sound and motion. You don't just see the waterfall; you hear it long before you arrive, a distant hum growing into a powerful, multi-layered roar. It feels less like a single destination and more like five separate stories unfolding at once.", location: "Panchghagh Waterfall, Khunti" },
-            { img: "images/Patratu_dam_Ramgarh.png", experience: "Standing in front of Patratu Dam feels overwhelming — the sheer wall of concrete rising above you, with thin streams of water sliding down its face, is both powerful and oddly calming. At the bottom, the water collects quietly, surrounded by rocks and little patches of green that soften the heavy industrial look of the structure. It’s the kind of place where you really notice the mix of human engineering and nature, working together to create something striking.", location: "Patratu dam, Ramgarh" },
-            { img: "images/Khandoli Park_Giridih.png", experience: "When I walked through Khandoli Park, the first thing I noticed was the sound of kids laughing on the swings, their voices mixing with the chugging of a toy train in the background. A few rabbits and ducks were hanging around, as if they were part of the show, looking way too serious for such a playful setting. Families had spread out under the trees, sharing snacks, clicking selfies, and just enjoying the day. The whole place felt lighthearted and warm, like a simple picnic scene brought to life.", location: "Khandoli Park, Giridih" }
-        ];
+    let currentIndex = 0;
 
-        let currentIndex = 0;
+    galleryData.forEach((item, i) => {
+      const slide = document.createElement("div");
+      slide.classList.add("slide");
+      if (i === 0) slide.classList.add("active");
 
-        galleryData.forEach((item, i) => {
-            const slide = document.createElement("div");
-            slide.classList.add("slide");
-            if (i === 0) slide.classList.add("active");
-
-            slide.innerHTML = `
+      slide.innerHTML = `
                 <div class="picture_gallery">
                     <img src="${item.img}" alt="Slide ${i + 1}">
                     <div class="gallery_info">
@@ -270,42 +271,42 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                 </div>
             `;
-            slidesTrack.appendChild(slide);
+      slidesTrack.appendChild(slide);
 
-            const dot = document.createElement("span");
-            dot.classList.add("dot");
-            if (i === 0) dot.classList.add("active");
-            dot.addEventListener("click", () => goToSlide(i));
-            dotsContainer.appendChild(dot);
-        });
+      const dot = document.createElement("span");
+      dot.classList.add("dot");
+      if (i === 0) dot.classList.add("active");
+      dot.addEventListener("click", () => goToSlide(i));
+      dotsContainer.appendChild(dot);
+    });
 
-        const slides = document.querySelectorAll(".slide");
-        const dots = document.querySelectorAll(".dot");
+    const slides = document.querySelectorAll(".slide");
+    const dots = document.querySelectorAll(".dot");
 
-        function goToSlide(index) {
-            currentIndex = index;
-            updateSlides();
-        }
-
-        function updateSlides() {
-            slides.forEach((slide, i) => slide.classList.toggle("active", i === currentIndex));
-            dots.forEach((dot, i) => dot.classList.toggle("active", i === currentIndex));
-            slidesTrack.style.transform = `translateX(${-currentIndex * 100}%)`;
-        }
-
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % galleryData.length;
-            updateSlides();
-        }
-
-        setInterval(nextSlide, 3000);
+    function goToSlide(index) {
+      currentIndex = index;
+      updateSlides();
     }
 
-    console.log("✅ All features initialized (navbar scroll, search, upload preview, gallery slider).");
+    function updateSlides() {
+      slides.forEach((slide, i) => slide.classList.toggle("active", i === currentIndex));
+      dots.forEach((dot, i) => dot.classList.toggle("active", i === currentIndex));
+      slidesTrack.style.transform = `translateX(${-currentIndex * 100}%)`;
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % galleryData.length;
+      updateSlides();
+    }
+
+    setInterval(nextSlide, 3000);
+  }
+
+  console.log("✅ All features initialized (navbar scroll, search, upload preview, gallery slider).");
 });
 
 // Login modal controls
-const loginBtn = document.getElementById("btn-2"); // Login button in navbar
+const loginBtn = document.getElementById("btn-2");
 const loginModal = document.getElementById("loginModal");
 const closeLogin = document.getElementById("closeLogin");
 
@@ -323,9 +324,8 @@ window.addEventListener("click", (e) => {
   }
 });
 
-
 // Signup modal controls
-const signupBtn = document.getElementById("btn-3"); // Sign Up button in navbar
+const signupBtn = document.getElementById("btn-3");
 const signupModal = document.getElementById("signupModal");
 const closeSignup = document.getElementById("closeSignup");
 
@@ -348,32 +348,85 @@ const signupForm = document.getElementById("signupForm");
 const signupSubmitBtn = document.querySelector(".signup-btn");
 
 signupSubmitBtn.addEventListener("click", (e) => {
-  e.preventDefault(); // stop page reload
+  e.preventDefault();
 
-  // ✅ Simple validation (check required fields)
   if (!signupForm.checkValidity()) {
-    signupForm.reportValidity(); // show browser’s built-in error messages
+    signupForm.reportValidity();
     return;
   }
 
-  // Collect data
   const formData = new FormData(signupForm);
   const data = Object.fromEntries(formData.entries());
 
   console.log("Signup data:", data);
 
-  // ✅ Here you can send data to backend (example with fetch)
-  /*
-  fetch("/signup", {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: { "Content-Type": "application/json" }
-  })
-  .then(res => res.json())
-  .then(result => console.log("Signup success:", result))
-  .catch(err => console.error("Signup error:", err));
-  */
-
   alert("✅ Sign up submitted!");
-  signupForm.reset(); // clear form after submission
+  signupForm.reset();
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  const imageUpload = document.getElementById('imageUpload');
+  const preview = document.getElementById('preview');
+
+  imageUpload.addEventListener('change', function (event) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        preview.src = e.target.result;
+        preview.style.display = 'block';
+      };
+      reader.readAsDataURL(file);
+    } else {
+      preview.style.display = 'none';
+      preview.src = "";
+    }
+  });
+
+  const missingPersonForm = document.getElementById('missingPersonForm');
+  missingPersonForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const selectedType = document.querySelector('input[name="reportType"]:checked').id;
+    const reportType = selectedType === 'report' ? 'Report Missing' : 'Found Person';
+
+    const formData = new FormData(missingPersonForm);
+    const name = formData.get('name') || 'Not provided';
+    const age = formData.get('age') || 'Not provided';
+
+    alert(`${reportType} submitted successfully!\nName: ${name}\nAge: ${age}\n(Demo mode - no backend integration)`);
+  });
+
+  const genderFilter = document.getElementById('genderFilter');
+  const ageFilter = document.getElementById('ageFilter');
+  const locationFilter = document.getElementById('locationFilter');
+  const cards = document.querySelectorAll('.card');
+
+  function filterCards() {
+    const selectedGender = genderFilter.value.toLowerCase();
+    const selectedAge = ageFilter.value.toLowerCase();
+    const locationQuery = locationFilter.value.toLowerCase().trim();
+
+    cards.forEach(card => {
+      const cardGender = card.dataset.gender.toLowerCase();
+      const cardAge = card.dataset.age.toLowerCase();
+      const cardLocation = card.dataset.location.toLowerCase();
+
+      const genderMatch = !selectedGender || cardGender === selectedGender;
+      const ageMatch = !selectedAge || cardAge === selectedAge;
+      const locationMatch = !locationQuery || cardLocation.includes(locationQuery);
+
+      if (genderMatch && ageMatch && locationMatch) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  genderFilter.addEventListener('change', filterCards);
+  ageFilter.addEventListener('change', filterCards);
+  locationFilter.addEventListener('input', filterCards);
+
+  filterCards();
 });
