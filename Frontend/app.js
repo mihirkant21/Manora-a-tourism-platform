@@ -342,6 +342,7 @@ window.addEventListener("click", (e) => {
     signupModal.style.display = "none";
   }
 });
+
 // ✅ Signup form code - place at END of app.js
 document.addEventListener("DOMContentLoaded", () => {
   const signupForm = document.getElementById("signupForm");
@@ -351,33 +352,38 @@ document.addEventListener("DOMContentLoaded", () => {
     signupSubmitBtn.addEventListener("click", async (e) => {
       e.preventDefault();
 
-      // Validate HTML form first
       if (!signupForm.checkValidity()) {
         signupForm.reportValidity();
         return;
       }
 
-      // Collect form data
       const data = Object.fromEntries(new FormData(signupForm).entries());
 
       try {
-        const res = await fetch("/auth/signup", {
+        const res = await fetch("http://localhost:5000/auth/signup", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data),
         });
 
-        if (!res.ok) throw new Error("Signup failed");
-        const result = await res.json();
+        const result = await res.json(); // parse JSON first
 
-        alert(`✅ Signup successful! Welcome ${result.firstName} ${result.lastName}`);
+        if (!res.ok) {
+          // show real backend error
+          console.error("Signup failed:", result.error);
+          alert(`❌ Signup failed: ${result.error}`);
+          return;
+        }
+
+        alert(`✅ Signup successful! Welcome ${result.user.firstName} ${result.user.lastName}`);
         signupForm.reset();
       } catch (err) {
-        console.error("Signup error:", err);
-        alert("❌ Signup failed. Try again.");
+        console.error("Network or server error:", err);
+        alert("❌ Signup failed due to network/server error.");
       }
     });
   } else {
     console.warn("⚠️ Signup form or button not found in DOM.");
   }
 });
+
