@@ -342,91 +342,42 @@ window.addEventListener("click", (e) => {
     signupModal.style.display = "none";
   }
 });
+// ✅ Signup form code - place at END of app.js
+document.addEventListener("DOMContentLoaded", () => {
+  const signupForm = document.getElementById("signupForm");
+  const signupSubmitBtn = document.querySelector(".signup-btn");
 
-// Signup form and button
-const signupForm = document.getElementById("signupForm");
-const signupSubmitBtn = document.querySelector(".signup-btn");
+  if (signupForm && signupSubmitBtn) {
+    signupSubmitBtn.addEventListener("click", async (e) => {
+      e.preventDefault();
 
-signupSubmitBtn.addEventListener("click", (e) => {
-  e.preventDefault();
+      // Validate HTML form first
+      if (!signupForm.checkValidity()) {
+        signupForm.reportValidity();
+        return;
+      }
 
-  if (!signupForm.checkValidity()) {
-    signupForm.reportValidity();
-    return;
-  }
+      // Collect form data
+      const data = Object.fromEntries(new FormData(signupForm).entries());
 
-  const formData = new FormData(signupForm);
-  const data = Object.fromEntries(formData.entries());
+      try {
+        const res = await fetch("/auth/signup", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
 
-  console.log("Signup data:", data);
+        if (!res.ok) throw new Error("Signup failed");
+        const result = await res.json();
 
-  alert("✅ Sign up submitted!");
-  signupForm.reset();
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-  const imageUpload = document.getElementById('imageUpload');
-  const preview = document.getElementById('preview');
-
-  imageUpload.addEventListener('change', function (event) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        preview.src = e.target.result;
-        preview.style.display = 'block';
-      };
-      reader.readAsDataURL(file);
-    } else {
-      preview.style.display = 'none';
-      preview.src = "";
-    }
-  });
-
-  const missingPersonForm = document.getElementById('missingPersonForm');
-  missingPersonForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    const selectedType = document.querySelector('input[name="reportType"]:checked').id;
-    const reportType = selectedType === 'report' ? 'Report Missing' : 'Found Person';
-
-    const formData = new FormData(missingPersonForm);
-    const name = formData.get('name') || 'Not provided';
-    const age = formData.get('age') || 'Not provided';
-
-    alert(`${reportType} submitted successfully!\nName: ${name}\nAge: ${age}\n(Demo mode - no backend integration)`);
-  });
-
-  const genderFilter = document.getElementById('genderFilter');
-  const ageFilter = document.getElementById('ageFilter');
-  const locationFilter = document.getElementById('locationFilter');
-  const cards = document.querySelectorAll('.card');
-
-  function filterCards() {
-    const selectedGender = genderFilter.value.toLowerCase();
-    const selectedAge = ageFilter.value.toLowerCase();
-    const locationQuery = locationFilter.value.toLowerCase().trim();
-
-    cards.forEach(card => {
-      const cardGender = card.dataset.gender.toLowerCase();
-      const cardAge = card.dataset.age.toLowerCase();
-      const cardLocation = card.dataset.location.toLowerCase();
-
-      const genderMatch = !selectedGender || cardGender === selectedGender;
-      const ageMatch = !selectedAge || cardAge === selectedAge;
-      const locationMatch = !locationQuery || cardLocation.includes(locationQuery);
-
-      if (genderMatch && ageMatch && locationMatch) {
-        card.style.display = 'block';
-      } else {
-        card.style.display = 'none';
+        alert(`✅ Signup successful! Welcome ${result.firstName} ${result.lastName}`);
+        signupForm.reset();
+      } catch (err) {
+        console.error("Signup error:", err);
+        alert("❌ Signup failed. Try again.");
       }
     });
+  } else {
+    console.warn("⚠️ Signup form or button not found in DOM.");
   }
-
-  genderFilter.addEventListener('change', filterCards);
-  ageFilter.addEventListener('change', filterCards);
-  locationFilter.addEventListener('input', filterCards);
-
-  filterCards();
 });
